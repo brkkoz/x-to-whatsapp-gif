@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b1020">
+<meta name="description" content="Convert public X posts to short animated GIFs, then share with WhatsApp. No app or account required.">
+<title>X to GIF — Share animated moments</title>
+<style>
+:root{color-scheme:dark;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#0b1020;color:#f8f9ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:280px;min-height:100svh;background:radial-gradient(ellipse 60% 35% at 85% 0%,#33295d 0,transparent 100%),#0b1020}
+a{color:#bcb2ff}button,input{font:inherit}button{cursor:pointer}button:disabled{opacity:.65;cursor:wait}
+.shell{width:min(100% - 36px,1030px);margin:auto}.topbar{padding:23px 0;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:800;letter-spacing:.01em}.mark{width:38px;height:38px;border-radius:13px;background:linear-gradient(140deg,#9a8dff,#6057d8);display:grid;place-items:center;font-size:22px}.topnote{font-size:12px;color:#a1a9c1}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.06fr);align-items:center;gap:clamp(24px,5vw,66px);padding:clamp(35px,7vw,86px) 0 58px}.eyebrow{text-transform:uppercase;color:#aea2ff;font-size:12px;letter-spacing:.14em;font-weight:800;margin:0 0 18px}.intro h1{font-size:clamp(39px,5vw,70px);line-height:1.04;letter-spacing:-.06em;margin:0 0 22px}.intro h1 em{font-style:normal;color:#b4aaff}.description{color:#b0bad1;line-height:1.65;font-size:clamp(15px,1.5vw,18px);margin:0 0 28px}.benefits{display:flex;flex-wrap:wrap;gap:9px}.pill{border:1px solid #333a55;border-radius:30px;padding:8px 11px;font-size:12px;color:#bec7de;background:#141b30}
+.panel{min-width:0;border:1px solid #41445f;border-radius:25px;padding:clamp(18px,3vw,32px);background:linear-gradient(145deg,#20253e,#171d32);box-shadow:0 24px 70px #03061380}.panel h2{font-size:23px;letter-spacing:-.03em;margin:0 0 7px}.subhead{color:#aeb9d0;font-size:13px;margin:0 0 22px;line-height:1.6}.fieldlabel{display:block;margin:0 0 9px;font-size:13px;font-weight:750}.inputrow{display:flex;gap:8px}.url{min-width:0;width:100%;border:1px solid #4b5471;background:#0f1529;border-radius:12px;padding:15px 14px;color:white;outline:none;font-size:15px}.url:focus-visible{border-color:#b7aaff;box-shadow:0 0 0 3px #a094ff30}.url::placeholder{color:#7784a1}.btn{border:0;border-radius:12px;padding:15px 17px;min-height:48px;font-weight:750;display:flex;justify-content:center;align-items:center;gap:8px;text-align:center;text-decoration:none}.btn-main{width:100%;margin-top:12px;color:#0e1021;background:#ac9dff}.btn-main:hover{background:#c1b7ff}.btn-share{background:#29ce88;color:#092b20}.btn-share:hover{background:#55e0a3}.btn-secondary{color:#f0efff;background:#303850}.btn-secondary:hover{background:#414b6a}.help{font-size:12px;color:#9ca8c2;line-height:1.6;margin:12px 0 0}.error{border-radius:11px;padding:12px;margin:15px 0 0;background:#4d2433;color:#ffdce3;font-size:13px;line-height:1.5}.hidden{display:none!important}.result{margin-top:23px;padding-top:21px;border-top:1px solid #3b415a}.result h3{font-size:18px;letter-spacing:-.02em;margin:0 0 14px}.previewbox{display:flex;justify-content:center;align-items:center;border-radius:14px;min-height:160px;max-height:360px;overflow:hidden;background:repeating-conic-gradient(#182038 0% 25%,#10172a 0% 50%) 50%/20px 20px}.previewbox img{max-width:100%;width:auto;max-height:360px;object-fit:contain;display:block}.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.info{margin-top:15px;padding:12px 14px;background:#11172a;border:1px solid #353e59;border-radius:12px;color:#b4bfd7;font-size:12px;line-height:1.6}.info strong{color:#ecedff}.desktop-actions{display:grid;gap:8px;margin-top:12px;padding:12px;border:1px solid #3e5478;border-radius:13px;background:#121d33}.desktop-actions .help{margin:2px 0}.desktop-actions .btn{width:100%}.steps{border-top:1px solid #262e45;padding:31px 0 38px;display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.step{display:flex;align-items:flex-start;gap:12px}.number{display:grid;place-items:center;flex:0 0 32px;height:32px;background:#222742;border:1px solid #3c4561;border-radius:10px;color:#bdadff;font-weight:800;font-size:13px}.step strong{display:block;margin-bottom:5px;font-size:14px}.step p{font-size:12px;color:#99a6be;margin:0;line-height:1.6}.foot{border-top:1px solid #262e45;padding:20px 0 36px;font-size:12px;color:#8793ad;line-height:1.7}
+@media(max-width:760px){.hero{grid-template-columns:1fr;gap:30px;padding-top:32px;padding-bottom:38px}.intro h1{max-width:640px}.description{max-width:560px}.steps{grid-template-columns:1fr 1fr}}
+@media(max-width:440px){.shell{width:calc(100% - 28px)}.topbar{padding:15px 0}.topnote{display:none}.hero{padding-top:29px}.intro h1{font-size:clamp(36px,10.3vw,48px)}.panel{border-radius:20px;padding:17px}.actions{grid-template-columns:1fr}.steps{grid-template-columns:1fr;gap:19px}.url{font-size:16px}.btn{width:100%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="topbar"><div class="brand"><div class="mark">↗</div><span>X → GIF</span></div><div class="topnote">Free converter · No app required</div></header>
+<main>
+<section class="hero">
+  <div class="intro"><p class="eyebrow">Make it move</p><h1>From X to <em>WhatsApp GIF</em> in seconds.</h1><p class="description">Paste a public X post, turn the clip into a real animated GIF, and share it from your browser. No signup. No installation.</p><div class="benefits"><span class="pill">✓ Real animated GIF</span><span class="pill">✓ Mobile friendly</span><span class="pill">✓ No account</span></div></div>
+  <section class="panel" aria-label="GIF converter"><h2>Create your GIF</h2><p class="subhead">Paste the URL of a public X post containing a video or GIF.</p>
+  <form id="form"><label class="fieldlabel" for="url">X post link</label><input class="url" id="url" type="url" placeholder="https://x.com/user/status/..." autocomplete="url" inputmode="url" spellcheck="false" required aria-describedby="inputHelp"><button class="btn btn-main" id="convert" type="submit">Create animated GIF <span aria-hidden="true">→</span></button></form>
+  <p class="help" id="inputHelp">Optimized as a short looping GIF (up to 5.5 seconds, 5 MB).</p><div class="error hidden" id="error" role="alert"></div>
+  <section class="result hidden" id="result" aria-live="polite"><h3>✨ Your animated GIF is ready</h3><div class="previewbox"><img id="preview" alt="Animated GIF preview"></div><div class="actions"><button class="btn btn-share" id="share" type="button">Share to WhatsApp ↗</button><a class="btn btn-secondary" id="download" download="x-to-whatsapp.gif">↓ Download GIF</a></div><div id="desktopActions" class="desktop-actions hidden"><button class="btn btn-share" id="shareVideo" type="button">Share moving clip (desktop) ↗</button><span id="desktopStatus" class="help" role="status"></span><a class="btn btn-secondary hidden" id="downloadVideo" download="whatsapp-moving-clip.mp4">↓ Download moving clip</a></div><div class="info" id="shareHint"><strong>How sharing works:</strong> Choose WhatsApp in the phone's share sheet. Some iPhones/WhatsApp versions may still send a static photo; websites cannot force WhatsApp's GIF mode.</div></section>
+  </section>
+</section>
+<section class="steps" aria-label="How it works"><div class="step"><span class="number">01</span><div><strong>Paste a link</strong><p>Copy a public X post URL.</p></div></div><div class="step"><span class="number">02</span><div><strong>Convert</strong><p>We generate a small looping GIF.</p></div></div><div class="step"><span class="number">03</span><div><strong>Share</strong><p>Use your phone's native share menu.</p></div></div></section>
+</main>
+<footer class="foot">Independent tool; not affiliated with X or WhatsApp. Share only media you have permission to use. Restricted posts may not convert. Files are processed temporarily, not stored in an online library. <a href="/health">Service status</a>.</footer>
+</div>
+<script>
+'use strict';
+const form=document.getElementById('form'),url=document.getElementById('url'),convert=document.getElementById('convert'),error=document.getElementById('error'),result=document.getElementById('result'),preview=document.getElementById('preview'),download=document.getElementById('download'),share=document.getElementById('share'),shareHint=document.getElementById('shareHint'),desktopActions=document.getElementById('desktopActions'),shareVideo=document.getElementById('shareVideo'),desktopStatus=document.getElementById('desktopStatus'),downloadVideo=document.getElementById('downloadVideo');
+let gifFile=null,gifObjectUrl=null,videoFile=null,videoObjectUrl=null;
+const isLikelyDesktop = !(/Android|iPhone|iPad|iPod/i.test(navigator.userAgent));
+if(isLikelyDesktop)document.body.classList.add('is-desktop');
+const urlParam=new URLSearchParams(location.search).get('url');if(urlParam)url.value=urlParam;
+function clearResult(){error.classList.add('hidden');result.classList.add('hidden');desktopActions.classList.add('hidden');desktopStatus.textContent='';gifFile=null;videoFile=null;downloadVideo.classList.add('hidden');if(gifObjectUrl){URL.revokeObjectURL(gifObjectUrl);gifObjectUrl=null;}if(videoObjectUrl){URL.revokeObjectURL(videoObjectUrl);videoObjectUrl=null;}}
+function showError(msg){error.textContent=msg;error.classList.remove('hidden');}
+form.addEventListener('submit',async e=>{
+ e.preventDefault();clearResult();convert.disabled=true;convert.textContent='Creating your GIF…';
+ try{
+  const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),120000);
+  let response;try{response=await fetch('/api/convert',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url:url.value.trim()}),signal:controller.signal});}finally{clearTimeout(timer);}
+  if(!response.ok){const data=await response.json().catch(()=>({}));throw new Error(data.error||'Conversion failed. Try another public post.');}
+  const blob=await response.blob();if(!blob.type.startsWith('image/gif'))throw new Error('The server did not return a GIF.');
+  if(blob.size<100)throw new Error('The GIF file appears incomplete.');
+  gifFile=new File([blob],'x-to-whatsapp.gif',{type:'image/gif',lastModified:Date.now()});gifObjectUrl=URL.createObjectURL(blob);preview.src=gifObjectUrl;download.href=gifObjectUrl;result.classList.remove('hidden');
+  if(isLikelyDesktop){
+    desktopActions.classList.remove('hidden');
+    share.textContent='Share GIF (may become a photo)';
+    shareHint.innerHTML='<strong>Desktop tip:</strong> WhatsApp Web can flatten uploaded GIFs into still images. Try “Share moving clip” below: it sends an MP4, which should remain animated as a video, but may not appear as a native GIF.';
+  }else{
+    share.textContent='Share to WhatsApp ↗';
+    shareHint.innerHTML='<strong>Ready to share.</strong> Choose WhatsApp in your phone’s share menu.';
+  }
+  result.scrollIntoView({behavior:'smooth',block:'nearest'});
+ }catch(err){showError(err.name==='AbortError'?'Conversion timed out. Please retry.':(err.message||'Conversion failed.'));}
+ finally{convert.disabled=false;convert.textContent='Create animated GIF →';}
+});
+async function prepareVideo(){
+ if(videoFile)return videoFile;
+ desktopStatus.textContent='Preparing a short moving clip…';shareVideo.disabled=true;
+ try{
+  const controller=new AbortController();const timer=setTimeout(()=>controller.abort(),120000);
+  let response;try{response=await fetch('/api/whatsapp-video',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url:url.value.trim()}),signal:controller.signal});}finally{clearTimeout(timer);}
+  if(!response.ok){const data=await response.json().catch(()=>({}));throw new Error(data.error||'Could not create the video.');}
+  const blob=await response.blob();if(!blob.type.startsWith('video/mp4')||blob.size<100)throw new Error('Invalid video output.');
+  videoFile=new File([blob],'whatsapp-moving-clip.mp4',{type:'video/mp4',lastModified:Date.now()});
+  videoObjectUrl=URL.createObjectURL(blob);downloadVideo.href=videoObjectUrl;downloadVideo.classList.remove('hidden');
+  return videoFile;
+ }finally{shareVideo.disabled=false;}
+}
+shareVideo.addEventListener('click',async()=>{
+ try{
+  const file=await prepareVideo();
+  desktopStatus.textContent='Clip ready. Choose WhatsApp in your sharing options.';
+  if(navigator.share && navigator.canShare && navigator.canShare({files:[file]})){
+   try{await navigator.share({files:[file]});return;}catch(err){if(err.name==='AbortError')return;}
+  }
+  desktopStatus.textContent='Your browser cannot share video files directly. Download the clip instead. WhatsApp may send it as a video, not a GIF.';
+ }catch(err){desktopStatus.textContent=err.name==='AbortError'?'Video conversion timed out. Please retry.':(err.message||'Failed to prepare video.');}
+});
+share.addEventListener('click',async()=>{
+ if(!gifFile)return;
+ // Share ONLY the animated GIF File: no title/text/URL. Some iOS versions
+ // mishandle combined share payloads. WhatsApp decides how to present media.
+ if(navigator.share&&navigator.canShare&&navigator.canShare({files:[gifFile]})){
+  try{await navigator.share({files:[gifFile]});return;}catch(err){if(err.name==='AbortError')return;}
+ }
+ shareHint.textContent='Your browser does not support direct GIF file sharing. Download the GIF instead.';
+});
+</script>
+</body>
+</html>
