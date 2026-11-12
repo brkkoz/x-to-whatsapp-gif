@@ -95,7 +95,15 @@ def convert_x_post(url: str) -> bytes:
         result = run_command(cmd, timeout=85)
         candidates = [p for p in folder.glob("source.*") if p.suffix.lower() in {".mp4", ".webm", ".mkv", ".mov"}]
         if result.returncode != 0 or not candidates:
-            raise ConvertError("Could not fetch this post's media. It may be private, unavailable, or X may be blocking downloads.")
+            app.logger.error(
+                "yt-dlp failed | URL: %s | exit_code: %s | stderr: %s",
+                url,
+                result.returncode,
+                result.stderr[-3000:]
+           )
+           raise ConvertError(
+                "Could not fetch this post's media. It may be private, unavailable, or X may be blocking downloads."
+           )
         source = candidates[0]
         if source.stat().st_size > MAX_SOURCE_BYTES:
             raise ConvertError("Source video is too large.")
