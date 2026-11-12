@@ -94,6 +94,12 @@ def convert_x_post(url: str) -> bytes:
         ]
         result = run_command(cmd, timeout=85)
         candidates = [p for p in folder.glob("source.*") if p.suffix.lower() in {".mp4", ".webm", ".mkv", ".mov"}]
+        app.logger.warning(
+            "Download debug | files: %s | stdout: %s | stderr: %s",
+            [p.name for p in folder.iterdir()],
+            result.stdout[-2000:],
+            result.stderr[-2000:]
+        )       
         if result.returncode != 0 or not candidates:
             app.logger.error(
                 "yt-dlp failed | URL: %s | exit_code: %s | stderr: %s",
