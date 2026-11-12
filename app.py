@@ -19,7 +19,7 @@ app = Flask(__name__, static_folder="static", static_url_path="")
 app.config["MAX_CONTENT_LENGTH"] = 16 * 1024
 
 MAX_DURATION = 20  # seconds used from each post
-MAX_SOURCE_DURATION = 120  # refuse exceptionally long videos
+MAX_SOURCE_DURATION = 3600 # refuse exceptionally long videos
 MAX_SOURCE_BYTES = 35 * 1024 * 1024
 MAX_GIF_BYTES = 15 * 1024 * 1024
 MAX_CONCURRENT = 2
@@ -88,7 +88,6 @@ def convert_x_post(url: str) -> bytes:
             "yt-dlp", "--no-playlist", "--no-warnings", "--no-progress",
             "--socket-timeout", "12", "--no-config", "--retries", "1", "--fragment-retries", "1",
             "--max-filesize", str(MAX_SOURCE_BYTES),
-            "--match-filter", f"duration <= {MAX_SOURCE_DURATION}",
             "-f", "b[ext=mp4]/b", "--merge-output-format", "mp4",
             "-o", str(folder / "source.%(ext)s"), url,
         ]
