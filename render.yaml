@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: x-to-whatsapp-gif
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    autoDeployTrigger: commit
