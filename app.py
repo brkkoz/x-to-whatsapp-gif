@@ -100,10 +100,10 @@ def convert_x_post(url: str) -> bytes:
                 url,
                 result.returncode,
                 result.stderr[-3000:]
-           )
-           raise ConvertError(
+            )
+            raise ConvertError(
                 "Could not fetch this post's media. It may be private, unavailable, or X may be blocking downloads."
-           )
+            )
         source = candidates[0]
         if source.stat().st_size > MAX_SOURCE_BYTES:
             raise ConvertError("Source video is too large.")
